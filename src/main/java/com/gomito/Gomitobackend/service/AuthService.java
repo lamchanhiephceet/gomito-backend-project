@@ -1,6 +1,7 @@
 package com.gomito.Gomitobackend.service;
 
 import com.gomito.Gomitobackend.Exception.SpringGomitoException;
+import com.gomito.Gomitobackend.config.AppConfig;
 import com.gomito.Gomitobackend.dto.*;
 import com.gomito.Gomitobackend.model.GUser;
 
@@ -39,6 +40,7 @@ public class AuthService {
     private final JwtProvider jwtProvider;
     private final RefreshTokenService refreshTokenService;
     public static final String FROM_EMAIL = "lamchanhiephceet@gmail.com";
+    private final AppConfig appConfig;
 
     @Transactional
     public void signUp(SignUpRequest signUpRequest) {
@@ -62,14 +64,14 @@ public class AuthService {
         Map<String, Object> model = new HashMap<>();
         model.put("Username", signUpRequest.getUsername());
         model.put("Email", signUpRequest.getEmail());
-        model.put("message", "http://localhost:4200/login?isRegistered=true&verifyToken=" + token);
+        model.put("message", "https://gomito-frontend-project.herokuapp.com/login?isRegistered=true&verifyToken=" + token);
 
         mailService.sendMail(mailRequest, model, "email-template-signup.ftl");
 
         mailService.setMail(new NotificationEmail("Please Activate your Account",
                 gUser.getEmail(),"Thank you for signing up to GOMITO, " +
                 "please click on the below url to activate your account:\n" +
-                "http://localhost:8080/auth/accountVerification/" + token));
+                appConfig.getAppUrl() + "/auth/accountVerification/" + token));
     }
 
     private String generateVerificationToken(GUser gUser) {

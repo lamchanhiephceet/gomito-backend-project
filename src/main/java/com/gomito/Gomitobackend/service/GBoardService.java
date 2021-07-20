@@ -1,5 +1,6 @@
 package com.gomito.Gomitobackend.service;
 
+import com.gomito.Gomitobackend.config.AppConfig;
 import com.gomito.Gomitobackend.model.*;
 import com.gomito.Gomitobackend.repository.GBoardRepository;
 import com.gomito.Gomitobackend.repository.GCardRepository;
@@ -31,6 +32,8 @@ public class GBoardService {
 
     @Autowired
     private GCardRepository gCardRepository;
+
+    private AppConfig appConfig;
 
     public static final String FROM_EMAIL = "langquang1995@gmail.com";
 
@@ -70,7 +73,7 @@ public class GBoardService {
                     currentUser.getUsername() + " added you to the board " + board.getBoardName(),
                     member.getEmail(),
                     "Please click on the below url to join the board:\n"
-                            + "http://localhost:8080/api/users/join/" + token
+                            + appConfig.getAppUrl() + "/api/users/join/" + token
             ));
             MailRequest mailRequest = new MailRequest();
             mailRequest.setName(member.getUsername());
@@ -81,8 +84,8 @@ public class GBoardService {
             Map<String, Object> model = new HashMap<>();
             model.put("Username", member.getUsername());
             model.put("Email", member.getEmail());
-            model.put("message", "http://localhost:4200/api/users/join/" + token);
-            model.put("message", "http://localhost:4200/add-member-verify-token/" + token);
+            model.put("message", "https://gomito-frontend-project.herokuapp.com/api/users/join/" + token);
+            model.put("message", "https://gomito-frontend-project.herokuapp.com/add-member-verify-token/" + token);
 
             mailService.sendMail(mailRequest, model, "email-template-addBoard.ftl");
             return true;
