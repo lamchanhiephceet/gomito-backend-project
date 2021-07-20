@@ -5,6 +5,7 @@ import com.gomito.Gomitobackend.dto.*;
 import com.gomito.Gomitobackend.model.GUser;
 
 import com.gomito.Gomitobackend.model.MailRequest;
+import com.gomito.Gomitobackend.model.NotificationEmail;
 import com.gomito.Gomitobackend.model.VerificationToken;
 import com.gomito.Gomitobackend.repository.GUserRepository;
 import com.gomito.Gomitobackend.repository.VerificationTokenRepository;
@@ -37,7 +38,7 @@ public class AuthService {
     private final MailService mailService;
     private final JwtProvider jwtProvider;
     private final RefreshTokenService refreshTokenService;
-    public static final String FROM_EMAIL = "langquang1995@gmail.com";
+    public static final String FROM_EMAIL = "lamchanhiephceet@gmail.com";
 
     @Transactional
     public void signUp(SignUpRequest signUpRequest) {
@@ -45,7 +46,7 @@ public class AuthService {
         gUser.setUsername(signUpRequest.getUsername());
         gUser.setEmail(signUpRequest.getEmail());
         gUser.setPassword(encodePassword(signUpRequest.getPassword()));
-        gUser.setEnabled(false);
+        gUser.setEnabled(true);
 //        gUser.setEnabled(true);
         gUserRepository.save(gUser);
 
@@ -65,10 +66,10 @@ public class AuthService {
 
         mailService.sendMail(mailRequest, model, "email-template-signup.ftl");
 
-//        mailService.setMail(new NotificationEmail("Please Activate your Account",
-//                gUser.getEmail(),"Thank you for signing up to GOMITO, " +
-//                "please click on the below url to activate your account:\n" +
-//                "http://localhost:8080/auth/accountVerification/" + token));
+        mailService.setMail(new NotificationEmail("Please Activate your Account",
+                gUser.getEmail(),"Thank you for signing up to GOMITO, " +
+                "please click on the below url to activate your account:\n" +
+                "http://localhost:8080/auth/accountVerification/" + token));
     }
 
     private String generateVerificationToken(GUser gUser) {
