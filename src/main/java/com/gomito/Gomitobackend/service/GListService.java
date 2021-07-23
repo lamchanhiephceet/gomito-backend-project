@@ -20,11 +20,11 @@ public class GListService {
     @Autowired
     private GBoardRepository gBoardRepository;
 
-    public List<GList> findAllListByBoardId(Long id) {
-        GBoard board = gBoardRepository.findById(id)
-                .orElseThrow(() -> new SpringGomitoException("Ko tim thay board voi id la " + id));
-        return gListRepository.findAllByBoard(board);
-    }
+//    public List<GList> findAllListByBoardId(Long id) {
+//        GBoard board = gBoardRepository.findById(id)
+//                .orElseThrow(() -> new SpringGomitoException("Ko tim thay board voi id la " + id));
+//        return gListRepository.findAllByBoard(board);
+//    }
 
     public GList save(GList glist) {
         return gListRepository.save(glist);
