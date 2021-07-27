@@ -35,7 +35,7 @@ public class GBoardService {
 
     private AppConfig appConfig;
 
-    public static final String FROM_EMAIL = "langquang1995@gmail.com";
+    public static final String FROM_EMAIL = "lamchanhiephceet@gmail.com";
 
     public List<GBoard> findAllBoardByUserId(Long id){
         GUser user = gUserRepository.findById(id).orElse(null);

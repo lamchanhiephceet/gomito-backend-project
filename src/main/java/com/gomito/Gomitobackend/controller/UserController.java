@@ -71,7 +71,7 @@ public class UserController {
         if (gUserService.verifyToken(token)) {
             return ResponseEntity.status(HttpStatus.OK)
                     .body("You have been added to the table. Start working now!\n" +
-                            "Login here: http://localhost:4200/login");
+                            "Login here: https://gomito-frontend-project.herokuapp.com/login");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Wrong token");
         }

@@ -17,7 +17,7 @@ public class MailContentBuilder {
         return templateEngine.process("email-template-signup.ftl", context);
     }
 
-//    // Thông báo mail khi thêm 1 thành viên vào bảng
+    // Thông báo mail khi thêm 1 thành viên vào bảng
 //    String notificationAddBoard(String message){
 //        Context contextAddBoard = new Context();
 //        contextAddBoard.setVariable("message", message);
