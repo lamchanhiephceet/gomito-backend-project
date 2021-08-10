@@ -39,7 +39,7 @@ public class AuthService {
     private final MailService mailService;
     private final JwtProvider jwtProvider;
     private final RefreshTokenService refreshTokenService;
-    public static final String FROM_EMAIL = "lamchanhiephceet@gmail.com";
+    public static final String FROM_EMAIL = "hiepnv@mkvision.com";
     private final AppConfig appConfig;
 
     @Transactional
@@ -48,7 +48,7 @@ public class AuthService {
         gUser.setUsername(signUpRequest.getUsername());
         gUser.setEmail(signUpRequest.getEmail());
         gUser.setPassword(encodePassword(signUpRequest.getPassword()));
-        gUser.setEnabled(true);
+        gUser.setEnabled(false);
 //        gUser.setEnabled(true);
         gUserRepository.save(gUser);
 

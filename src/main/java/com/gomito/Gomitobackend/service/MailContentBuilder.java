@@ -18,9 +18,9 @@ public class MailContentBuilder {
     }
 
 //     Thông báo mail khi thêm 1 thành viên vào bảng
-    String notificationAddBoard(String message){
-        Context contextAddBoard = new Context();
-        contextAddBoard.setVariable("message", message);
-        return templateEngine.process("email-template-addBoard.ftl", contextAddBoard);
-    }
+//    String notificationAddBoard(String message){
+//        Context contextAddBoard = new Context();
+//        contextAddBoard.setVariable("message", message);
+//        return templateEngine.process("email-template-addBoard.ftl", contextAddBoard);
+//    }
 }
