@@ -9,13 +9,15 @@ import javax.persistence.*;
 import java.time.Instant;
 import java.util.List;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class Notification {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long notificationId;
     private String notificationName;
 

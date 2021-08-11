@@ -10,6 +10,8 @@ import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 import java.util.List;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +19,7 @@ import java.util.List;
 @Table(name = "gomito_users")
 public class GUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long userId;
 
     @NotBlank(message = "Username is required")
@@ -27,7 +29,7 @@ public class GUser {
     @NotEmpty(message = "Email is required")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Password is required")
     private String password;
 
     private Instant created;

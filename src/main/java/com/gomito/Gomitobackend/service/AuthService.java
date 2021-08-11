@@ -42,12 +42,13 @@ public class AuthService {
     public static final String FROM_EMAIL = "hiepnv@mkvision.com";
     private final AppConfig appConfig;
 
-    @Transactional
+
     public void signUp(SignUpRequest signUpRequest) {
         GUser gUser = new GUser();
         gUser.setUsername(signUpRequest.getUsername());
         gUser.setEmail(signUpRequest.getEmail());
         gUser.setPassword(encodePassword(signUpRequest.getPassword()));
+        gUser.setCreated(Instant.now());
 //        gUser.setEnabled(false);
         gUser.setEnabled(true);
         gUserRepository.save(gUser);
@@ -147,6 +148,7 @@ public class AuthService {
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public GUser getCurrentUser() {
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return gUserRepository.findByUsername(principal.getUsername()).orElse(null);

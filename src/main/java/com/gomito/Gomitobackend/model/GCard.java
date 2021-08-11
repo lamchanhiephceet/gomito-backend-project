@@ -9,13 +9,15 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class GCard {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long cardId;
     private String cardName;
     private String description;

@@ -10,13 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.Instant;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class RefreshToken {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private String token;
     private Instant createdDate;
